@@ -27,6 +27,8 @@ public class ProductPage extends BasePage {
     /**
      * Resources
      */
+
+    // Pattern for the extracting the ViewCount from the Product page.
     private final String VIEWCOUNTPATTERN = "<span style=\"font-weight:bold;\">(.+?) viewed per hour<\\/span>";
 
 
@@ -35,18 +37,18 @@ public class ProductPage extends BasePage {
      * @return number of views from the last hour
      */
     public int getViewCount() {
+        int viewCount = 0;
         if(webDriverInstance.elementExists(viewCountDiv)) {
             String divText = webDriverInstance.getElementInnerHtml(viewCountDiv);
-            String viewCount = utils.getByRegEx(VIEWCOUNTPATTERN, divText);
-            if(viewCount.isEmpty()) {
-                logger.debug("no watchers");
-                return 0;
+            String strViewCount = utils.getByRegEx(VIEWCOUNTPATTERN, divText);
+
+            if (!strViewCount.isEmpty()) {
+                viewCount = Integer.parseInt(strViewCount);
             }
-            logger.debug("num of watchers=" + viewCount);
-            return Integer.parseInt(viewCount);
         }
-        logger.debug("no watchers");
-        return 0;
+        logger.debug("Num. of watchers = " + viewCount);
+
+        return viewCount;
     }
 
 }

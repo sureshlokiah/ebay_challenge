@@ -100,5 +100,4 @@ public class WebDriverInstance {
             return 0;
         }
     }
-
 }
