@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.ebay.model","l":"BasePage"},{"p":"com.ebay.tests","l":"BaseTest"},{"p":"com.ebay.tests.ViewsTests","l":"EbayTest"},{"p":"com.ebay.model.pages","l":"ProductPage"},{"p":"com.ebay.model.pages","l":"SearchPage"},{"p":"com.ebay.utils","l":"Utils"},{"p":"com.ebay.utils","l":"WebDriverInstance"}]

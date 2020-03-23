@@ -1,0 +1,5 @@
+com.ebay.model
+com.ebay.model.pages
+com.ebay.tests
+com.ebay.tests.ViewsTests
+com.ebay.utils

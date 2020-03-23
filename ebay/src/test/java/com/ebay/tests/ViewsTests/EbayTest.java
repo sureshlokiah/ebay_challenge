@@ -16,73 +16,22 @@ public class EbayTest extends BaseTest {
 
     final static Logger logger = Logger.getLogger(EbayTest.class);
 
+    //Product search query
     private final String keyword = "rolex";
-    private final int maxNumOfPages = 5;
-    private static int productsChecked = 0;
-    private final int maxNumOfProductsToBeChecked = 25;
+
+    // Number of products to check
+    private final int maxNumOfProductsToBeChecked = 250;
+
+    //Top list of sorted watches by View count.
     private final int maxNumOfWatchesToBeDisplayed = 5;
 
-/*
-    public void testRolexMaxViews2() {
+    //Limit the eBay page searches to maxNumOfPages
+    private final int maxNumOfPages = 3;
 
-        HashMap<String, Integer> watches = new HashMap<>();
 
-        try
-        {
-            int countIssuesInSearchPage = 0;
+    private static int productsChecked = 0;
 
-            searchPage.setPagesDirectory(pages_directory);
 
-            //Writer to capture ViewCounts for Products in separate report file
-            PrintWriter writer_products  = new PrintWriter(new FileWriter(output_directory + "products.txt"));
-
-            for (int pageNumber = 1; pageNumber <= maxNumOfPages && productsChecked < maxNumOfProductsToBeChecked && countIssuesInSearchPage < 3; pageNumber++) {
-
-                //1. Search for query string
-                searchPage.goToSearchUrl(keyword, pageNumber + 1);
-
-                String currentUrl = webDriverInstance.getCurrentUrl();
-
-                //2. Get the number of products in the search results page.
-                int maxProductsPerPage = searchPage.getNumberOfProducts();
-
-                for (int idNumber = 1; idNumber <= maxProductsPerPage && productsChecked < maxNumOfProductsToBeChecked && countIssuesInSearchPage < 3; idNumber++) {
-
-                    //3. For each Product url from the search results page, Open the Product page
-                    boolean isSuccess = searchPage.openProductById(idNumber, pageNumber);
-                    //3a. If there are issues in getting the product Id from search Page then continue
-                    if (!isSuccess) { countIssuesInSearchPage++; continue;  }
-
-                    //4. Get the View count for the product
-                    int viewCount = productPage.getViewCount();
-
-                    String url = webDriverInstance.getCurrentUrl();
-
-                    //5. Log the ViewCount and the URL for the product.
-                    logger.info(productsChecked + ".Views:" + viewCount + " - " + url);
-                    writer_products.println(viewCount + " - " + url);
-                    writer_products.flush();
-
-                    watches.put(url, viewCount);
-
-                    webDriverInstance.goToUrl(currentUrl);
-
-                    productsChecked++;
-                }
-            }
-            if (countIssuesInSearchPage >= 3) {
-                logger.error("SEARCHPAGEISSUE Count: " + countIssuesInSearchPage);
-            }
-            writer_products.close();
-        }
-        catch(Exception e)
-        {
-            logger.error(e);
-        }
-
-        utils.sortHashMap2(watches, maxNumOfWatchesToBeDisplayed);
-    }
-*/
 
     @Test
     public void testRolexMaxViews() {
@@ -101,15 +50,15 @@ public class EbayTest extends BaseTest {
                 //1. Search ebay site for the query keyword string
                 searchPage.goToSearchUrl(keyword, pageNumber);
 
-                //2. Get the number of products in the search results page.
+                //2. Get the products URL from the search results page.
                 ArrayList<String> productsList = searchPage.getProductsList();
 
-                int idNumber = 0;
+                int idNumber = 0;   // is the number to identify the  LI row.
                 while ( (idNumber < productsList.size() && productsChecked < maxNumOfProductsToBeChecked) )
                 {
                     String url = productsList.get(idNumber);
 
-                    //3. Open the Product page by the URL. Archive the page using idNumber and pageNumber
+                    //3. Open the Product page by the URL. Archive the page using idNumber and pageNumber.
                     searchPage.goToProductPage(url, (idNumber+1), pageNumber);
 
                     //4. Get the View count for the product
@@ -136,7 +85,7 @@ public class EbayTest extends BaseTest {
             logger.error(e);
         }
 
-        //8. Sort the HashMap and
+        //8. Sort the HashMap to the Top5 and save the results.
         utils.sortHashMap_Save(watches,maxNumOfWatchesToBeDisplayed);
     }
 
