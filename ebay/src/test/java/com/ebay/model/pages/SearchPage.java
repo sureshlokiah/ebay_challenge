@@ -6,6 +6,12 @@ import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 
+
+/**
+ *
+ * This class is used to make an eBay search and process the results.
+ *
+ */
 public class SearchPage extends BasePage {
 
     final static Logger logger = Logger.getLogger(SearchPage.class);
@@ -48,6 +54,10 @@ public class SearchPage extends BasePage {
     // Pattern for the extracting the URL from the page
     private final String AHREFPATTERN = "<a href=\"(.+?)\"";
 
+
+    /**
+     * Set the pages directory location to archive the page.
+     */
     public void setPagesDirectory(String location)  {PagesDirectory = location;}
 
     /**
@@ -71,10 +81,10 @@ public class SearchPage extends BasePage {
      * Open the product page by the url for a given LI row element
      * from the search results page
      * @param url - The product url
-     * @param idNumber - LI row element id.
+     * @param idNumber - LI html tag row element id.
      * @param pageNumber - Search Page(_pgn) number
      */
-    public void goToProductPage(String url, int idNumber, int pageNumber) throws Exception {
+    public void goToProductPage(String url, int idNumber, int pageNumber)  {
         //logger.debug("idNumber=" + idNumber + ", pagenumber=" + pageNumber);
 
         webDriverInstance.goToUrl(url);
@@ -85,8 +95,8 @@ public class SearchPage extends BasePage {
     }
 
     /**
-     * Get Product url by the LI id number
-     * @param idNumber - LI row element id.
+     * Get Product url by the LI html tag id number
+     * @param idNumber - LI html tag row element id.
      * @return The href url.
      */
     public String  getProductUrlById(int idNumber) {
@@ -101,17 +111,17 @@ public class SearchPage extends BasePage {
 
     /**
      * Get the number of products found in the search page.
-     * @return ArrayList of Product URLs from the search page
+     * @return Count of products from the search page
      */
     public int getNumberOfProducts() {
         return webDriverInstance.getElementSize(liProducts);
     }
 
     /**
-     * Get Products list form the search results page
-     * @return Count of products from the Search page
+     * Get Products list from the search results page
+     * @return ArrayList of Product URLs from the search page
      */
-    public ArrayList<String> getProductsList() throws Exception
+    public ArrayList<String> getProductsList()
     {
         ArrayList<String> productsList = new ArrayList<>();
         /*

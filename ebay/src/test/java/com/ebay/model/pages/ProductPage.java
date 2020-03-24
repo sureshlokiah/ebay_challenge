@@ -4,6 +4,11 @@ import com.ebay.model.BasePage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
+/**
+ *
+ * This class extracts the views from the Product page.
+ *
+ */
 public class ProductPage extends BasePage {
 
     final static Logger logger = Logger.getLogger(ProductPage.class);
@@ -34,7 +39,7 @@ public class ProductPage extends BasePage {
 
     /**
      *
-     * @return number of views from the last hour
+     * @return The number of views from the last hour
      */
     public int getViewCount() {
         int viewCount = 0;

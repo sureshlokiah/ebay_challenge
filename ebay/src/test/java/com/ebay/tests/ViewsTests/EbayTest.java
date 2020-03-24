@@ -12,6 +12,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.apache.log4j.Logger;
 
+/**
+ *
+ * This class has methods to drive the testing.
+ *
+ * The testing is kept limited to the requested challenge and constraints
+ *
+ */
+
 public class EbayTest extends BaseTest {
 
     final static Logger logger = Logger.getLogger(EbayTest.class);
@@ -32,6 +40,10 @@ public class EbayTest extends BaseTest {
     private static int productsChecked = 0;
 
 
+    /**
+     * Test Driver for the query - "rolex".
+     * Analyzes View count for 250 products and prints report
+     */
 
     @Test
     public void testRolexMaxViews() {

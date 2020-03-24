@@ -10,6 +10,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.HashMap;
 
+/**
+ *
+ * Utilities  class.
+ *
+*/
 public class Utils {
 
     final static Logger logger = Logger.getLogger(Utils.class);
